@@ -50,7 +50,7 @@ parser.add_argument('--val-ratio', type=float, default=0.05,
                      it is the ratio on the observed links, othewise, it is the ratio on the whole links.')
 parser.add_argument('--practical-neg-sample', type=bool, default = False,
                     help='only see the train positive edges when sampling negative')
-#setups in peparing the training set 
+#setups in preparing the training set 
 parser.add_argument('--observe-val-and-injection', type=str2bool, default = True,
                     help='whether to contain the validation set in the observed graph and apply injection trick')
 parser.add_argument('--num-hops', type=int, default=2,
@@ -162,9 +162,9 @@ print("Dimention of features after concatenation:",num_features)
 set_random_seed(args.seed)
 
 model = LinkPred(in_channels = num_features, hidden_channels = hidden_channels,\
-    heads = heads, walk_len = walk_len, drnl = args.drnl,z_max = z_max, MSE= args.MSE).to(device)
+    heads = heads, walk_len = walk_len, drnl = args.drnl, z_max = z_max, MSE= args.MSE).to(device)
 
-optimizer = torch.optim.Adam(model.parameters(), lr=lr,weight_decay=weight_decay)
+optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
 criterion = torch.nn.MSELoss(reduction='mean')
 
 
